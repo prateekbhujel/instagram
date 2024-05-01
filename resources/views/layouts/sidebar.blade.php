@@ -160,7 +160,7 @@
 
 
 
-        <li><a class="flex items-center gap-5">
+        <li><a class="flex items-center gap-5 mb-6">
 
 
                 <x-avatar class=" w-7 h-7 shrink-0" />
@@ -172,8 +172,8 @@
 
 
     {{-- Footer --}}
-    <footer class="sticky bottom-0 mt-auto w-full grid px-3 z-50 bg-white">   
-        <div class="dropdown dropdown-top ">
+    <footer class="sticky bottom-0 mt-auto w-full grid px-3 z-50 bg-white mt-4">   
+        <div class="dropdown dropdown-top mt-6">
             <label tabindex="0" class=" cursor-pointer bg-white  flex items-center w-full gap-5 m-1">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
