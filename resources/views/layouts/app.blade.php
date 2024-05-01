@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'instagram') }}</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -23,10 +23,10 @@
 
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex flex-col justify-content mt-5">
+            <div class="drawer-content flex-col items-center justify-center">
               <!-- Page content here -->
-              {{-- <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> --}}
-                {{$slot}}
+              <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                {{ $slot }}
             </div> 
             <div class="drawer-side">
               <label for="my-drawer-2" class="drawer-overlay"></label> 
