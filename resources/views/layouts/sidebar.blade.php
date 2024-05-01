@@ -22,8 +22,8 @@
     {{-- Side content --}}
     <ul class="space-y-4 mt-2">
 
-        <li><a href="{{ route('dashboard') }}" class="flex items-center gap-5 ">
-
+        <li><a href="/" class="flex items-center gap-5 ">
+ 
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="w-6 h-6">
@@ -45,7 +45,7 @@
 
                 </span>
 
-                <h4 x-cloak x-show="!(shrink||drawer)"  class="text-lg font-extrabold">Home</h4>
+                <h4 x-cloak x-show="!(shrink||drawer)"  class=" text-lg font-extrabold">Home</h4>
             </a></li>
 
         <li><a class="flex items-center gap-5">
@@ -160,7 +160,7 @@
 
 
 
-        <li><a class="flex items-center gap-5 mb-6">
+        <li><a class="flex items-center gap-5">
 
 
                 <x-avatar class=" w-7 h-7 shrink-0" />
@@ -172,8 +172,8 @@
 
 
     {{-- Footer --}}
-    <footer class="sticky bottom-0 mt-auto w-full grid px-3 z-50 bg-white mt-4">   
-        <div class="dropdown dropdown-top mt-6">
+    <footer class="sticky bottom-0 mt-auto w-full grid px-3 z-50 bg-white">   
+        <div class="dropdown dropdown-top ">
             <label tabindex="0" class=" cursor-pointer bg-white  flex items-center w-full gap-5 m-1">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
