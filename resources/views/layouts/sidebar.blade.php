@@ -172,7 +172,7 @@
 
 
     {{-- Footer --}}
-    <footer class="sticky bottom-0 mt-auto w-full grid px-3 z-50 bg-white">   
+    <footer class="sticky bottom-0 mt-auto w-full grid px-3 z-50 bg-white m-auto">   
         <div class="dropdown dropdown-top ">
             <label tabindex="0" class=" cursor-pointer bg-white  flex items-center w-full gap-5 m-1">
                 <span>
