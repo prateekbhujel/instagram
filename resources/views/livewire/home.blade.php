@@ -68,6 +68,14 @@
             </section>
             {{-- Story section End --}}
 
+            {{-- Posts Section Start --}}
+            <section class="mt-5 space-y-4 p-2">
+
+                <livewire:post.item />
+
+            </section>
+            {{-- Posts Section End --}}
+
 
         </aside>
         
@@ -82,7 +90,7 @@
 
             </div>
 
-            {{-- Sugestions section Start --}}
+            {{-- Suggestions section Start --}}
             <section class="mt-4"> 
 
                 <h4 class="fomt-bold text-gray-700/95">Suggestions for you </h4>
@@ -98,9 +106,9 @@
                                     <p class="text-xs truncate"> Followed by {{ fake()->name }}</p>
                                 </div>
 
-                                <div class="col-span-2 flex text-right justify-end">
+                                <div class="col-span-2 flex text-right justify-end ml-2">
 
-                                    <button class="font-bold text-blue-500/100 ml-auto text-sm">Follow</button>
+                                    <button class="font-bold text-blue-500/100 ml-auto text-xs hover:text-slate-700">Follow</button>
 
                                 </div>
 
@@ -111,7 +119,7 @@
                 </ul>
 
             </section>
-            {{-- Sugestions section End --}}
+            {{-- Suggestions section End --}}
 
             {{-- Applinks Section Start --}}
             <section class="mt-5">
