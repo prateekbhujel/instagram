@@ -29,6 +29,10 @@
     
     {{-- Main Section Start --}}
     <main>
+        
+        <div class="my-2">
+            <x-video />
+        </div>
 
     </main>
     {{-- Main Section End --}}
@@ -36,7 +40,7 @@
 
     {{-- Footer section Start --}}
     <footer>
-        
+
     </footer>
     {{-- Footer Section End --}}
 
