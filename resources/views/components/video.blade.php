@@ -36,7 +36,7 @@
 
         {{-- mute  --}}
 
-        <div class="absolute z-[100] bottom-2 right-2 m-4 bg-gray-900 text-white rounded-lg p-1 cursor-pointer">
+        <div class="absolute z-[100] bottom-2 right-2 m-4 bg-gray-600/85 text-white rounded-xl p-1 cursor-pointer">
 
             {{-- mute --}}
 
