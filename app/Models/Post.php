@@ -23,10 +23,10 @@ class Post extends Model
         ];
     }
 
-    // public function media() : MorphMany 
-    // {
-    //     return $this->morphMany(Media::class, 'mediable');
-    // }
+    public function media() : MorphMany 
+    {
+        return $this->morphMany(Media::class, 'mediable');
+    }
 
     /** 
      * Posts Belongs to User.
