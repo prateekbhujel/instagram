@@ -10,7 +10,10 @@ window.Alpine = Alpine;
 import intersect from '@alpinejs/intersect'
  
 Alpine.plugin(intersect)
-Alpine.start();
+Alpine.start()
+
+import focus from '@alpinejs/focus'
+Alpine.plugin(focus)
 
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
