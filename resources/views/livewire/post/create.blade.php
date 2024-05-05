@@ -52,8 +52,7 @@
 
             {{-- Show when file count is > 0 --}}
 
-            <div class="
-            {{-- flex  --}} hidden overflow-x-scroll w-[500px] h-96 snap-x snap-mandatory gap-2 px-2">
+            <div class="{{-- flex  --}} hidden overflow-x-scroll w-[500px] h-96 snap-x snap-mandatory gap-2 px-2">
 
                 <div class="w-full h-full shrink-0 snap-always snap-center">
 
