@@ -71,7 +71,19 @@
             {{-- Posts Section Start --}}
             <section class="mt-5 space-y-4 p-2">
 
-                <livewire:post.item />
+                @if ($posts)
+
+                    @foreach ($posts->random(10) as $post)
+                        
+                        <livewire:post.item wire:key="post-{{ $post->id }}" :post="$post" />
+                    
+                    @endforeach
+
+                @else
+
+                    <p class="font-bold flex justify-center">No Posts available right now.</p>
+                
+                @endif
 
             </section>
             {{-- Posts Section End --}}
