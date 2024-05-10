@@ -56,6 +56,11 @@ This project is an Instagram clone built with the TALL stack (Tailwind CSS, Alpi
      ```bash
      php artisan key:generate
      ```
+   
+   - Generate Storage Symbolic link
+   ```bash
+   php artisan storage:link
+   ```
 
    - Configure database settings in the `.env` file.
 

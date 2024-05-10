@@ -3,12 +3,25 @@
 namespace App\Livewire;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class Home extends Component
 {
 
+
     public $posts;
+
+
+    #[On('post-created')] 
+    function postCreated($id)  {
+
+        $post = Post::find($id);
+        $this->posts =  $this->posts->prepend($post);
+        
+    }
+
 
     function mount()
     {

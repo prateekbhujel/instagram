@@ -7,7 +7,7 @@
   
             <div class="col-span-3">
   
-              <img src="{{asset('public/assets/logo.png')}}"  class="h-12 max-w-lg w-full" alt="logo">
+              <img src="{{asset('assets/logo.png')}}"  class="h-12 max-w-lg w-full" alt="logo">
   
             </div>
   
@@ -73,7 +73,7 @@
 
                 @if ($posts)
 
-                    @foreach ($posts->random(10) as $post)
+                    @foreach ($posts->random(65) as $post)
                         
                         <livewire:post.item wire:key="post-{{ $post->id }}" :post="$post" />
                     
