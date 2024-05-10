@@ -158,7 +158,7 @@
 
                 </span>
 
-                <h4 x-cloak x-show="!(shrink||drawer)"  class=" text-lg font-medium">Create</h4>
+                <h4 x-cloak x-show="!(shrink||drawer)"  class="text-lg font-medium">Create</h4>
             </div></li>
 
 

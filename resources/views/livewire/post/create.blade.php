@@ -1,4 +1,4 @@
-<div class="bg-white lg:h-[500px] flex flex-col border gap-y-4 px-5">
+<div class="bg-white lg:h-[500px] flex flex-col border gap-y-4 px-5 rounded-1">
 
 
     <header class="w-full py-2 border-b">

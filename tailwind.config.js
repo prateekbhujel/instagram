@@ -11,24 +11,14 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
-    safeList:[
-       'sm:max-w-sm', 
-       'sm:max-w-md',
-       
-       'md:max-w-lg', 
-       'md:max-w-xl',
-       
-       'lg:max-w-2xl', 
-       'lg:max-w-2xl', 
-       
-       'xl:max-w-4xl', 
-       'xl:max-w-5xl', 
+    safelist: [
+        {
+          pattern: /max-w-(sm|md|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl)/,
+          variants: ['sm', 'md', 'lg', 'xl', '2xl']
+        }
 
-       '2xl:max-w-6xl', 
-       '2xl:max-w-7xl', 
-
-
-    ],
+      ],
+      
 
     theme: {
         extend: {

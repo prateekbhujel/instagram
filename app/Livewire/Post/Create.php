@@ -14,7 +14,7 @@ class Create extends ModalComponent
      */
     public static function modalMaxWidth(): string
     {
-        return '4xl';
+        return '5xl';
     }
 
 
