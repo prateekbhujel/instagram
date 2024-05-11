@@ -80,8 +80,8 @@ class Create extends ModalComponent
             $this->reset();
             $this->dispatch('close');
             
-            //Dispatch even for post created
-            $this->dispatch('post-created', $this->post_id);
+            //Dispatch event for post created
+            $this->dispatch('post-created', $post->id);
 
         }
 
