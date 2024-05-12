@@ -41,7 +41,7 @@ class Modal extends ModalComponent
 
                 <div class="flex justify-end">
                         
-                    <button wire:click="$dispatch('closeModal')" type="button" class="xl font-bold">X</button>
+                    <button wire:click="$dispatch('closeModal')" type="button" class="xl font-bold text-ellipsis">X</button>
 
                 </div>
 
