@@ -47,10 +47,20 @@ class User extends Authenticatable
     }
 
     /**
-     * Rever relation between posts and users 
+     * Reverse relation between posts and users 
     */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
-    }
+
+    }//End Method
+
+    /**
+     * Reverse relation between comments and users 
+    */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+
+    }//End Method
 }
