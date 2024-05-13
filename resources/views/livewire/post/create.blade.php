@@ -4,23 +4,21 @@
     <header class="w-full py-2 border-b">
         <div class="flex justify-between">
 
-            <button wire:click="$dispatch('closeModal')" class=" font-bold">
-               X
+            <button wire:click="$dispatch('closeModal')" class="font-bold text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
-
 
             <div class="text-lg font-bold">
                 Create new post
             </div>
-
 
             <button @disabled(count($media)==0) wire:loading.attr="diabled"  wire:click="submit" class="text-blue-500 disabled:cursor-not-allowed disabled:opacity-25 font-bold">
                 Share
             </button>
         </div>
     </header>
-
-
 
     <main class="grid lg:grid-cols-12 gap-3 h-full w-full overflow-hidden ">
 
@@ -29,60 +27,45 @@
             
             {{-- upload media -will be hidden if files count <0 --}}
             @if (count($media)==0)
-            <label for="customFileInput" class="m-auto max-w-fit   flex-col  flex  gap-3 cursor-pointer">
-                <input wire:model.live="media"  type="file" wire:model="photo" multiple accept=".jpg,.png,.jpeg,.mp4" class="sr-only" id="customFileInput">
+                <label for="customFileInput" class="m-auto max-w-fit   flex-col  flex  gap-3 cursor-pointer">
+                    <input wire:model.live="media"  type="file" wire:model="photo" multiple accept=".jpg,.png,.jpeg,.mp4" class="sr-only" id="customFileInput">
 
-                <span class="m-auto">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-14 h-14">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                    </svg>
+                    <span class="m-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-14 h-14">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
 
-                </span>
+                    </span>
 
-                <span  class="bg-blue-500 text-white text-sm rounded-lg p-2 px-4">Upload files from
-                    computer </span>
-            </label>
+                    <span  class="bg-blue-500 text-white text-sm rounded-lg p-2 px-4">Upload files from
+                        computer </span>
+                </label>
 
             @else
-                  {{-- Show when file count >0 --}}
-            <div class="  flex overflow-x-scroll w-[500px] h-96 snap-x snap-mandatory gap-2 px-2 ">
+            
+                {{-- Show when file count >0 --}}
+                <div class="  flex overflow-x-scroll w-[500px] h-96 snap-x snap-mandatory gap-2 px-2 ">
 
-                
-                {{-- <div class=" w-full h-full shrink-0 snap-always snap-center">
-                    <x-video />
+                    @foreach ($media as $key=> $file)
+                        <div class=" w-full h-full shrink-0 snap-always snap-center">
 
-                </div>
-                <div class=" w-full h-full snap-always  shrink-0 snap-center">
-                    <img class="w-full h-full  object-contain"
-                        src="https://plus.unsplash.com/premium_photo-1666900440561-94dcb6865554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" />
+                            @if (strpos($file->getMimeType(), 'image') !== false)
+            
+                                <img class="w-full h-full  object-contain" src="{{ $file->temporaryUrl() }}" alt="Image">
+        
+                            @elseif (strpos($file->getMimeType(), 'video') !== false)
+                        
+                            <x-video :source="$file->temporaryUrl()" />
+                        @endif
 
-                </div> --}}
-
-                @foreach ($media as $key=> $file)
-                <div class=" w-full h-full shrink-0 snap-always snap-center">
-
-                    @if (strpos($file->getMimeType(), 'image') !== false)
-    
-                    <img class="w-full h-full  object-contain" src="{{ $file->temporaryUrl() }}" alt="Image">
-  
-                  @elseif (strpos($file->getMimeType(), 'video') !== false)
-                  
-                  <x-video :source="$file->temporaryUrl()" />
-                  @endif
-  
-  
+                        </div>
+                    @endforeach
 
                 </div>
-                @endforeach
-
-            </div>
 
             @endif
-       
-          
-
 
         </aside>
 
@@ -92,7 +75,7 @@
 
             <div class="flex items-center gap-2">
                 <x-avatar src="https://scontent.fbir7-1.fna.fbcdn.net/v/t39.30808-6/440466030_6871650512936763_6542344152271268454_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=1-v_381x69QQ7kNvgFcm2XM&_nc_ht=scontent.fbir7-1.fna&oh=00_AYC25Yg7-LE6J1SAx6qTuTP6f35yb_JRBlCx-oApyDIQYw&oe=6643BF06" class="w-9 h-9" />
-                <h5 class="font-bold">prateekbhujel</h5>
+                <h5 class="font-bold">{{ auth()->user()->name  }}</h5>
             </div>
 
             <div>
@@ -145,7 +128,6 @@
                 {{-- content --}}
                 <ul x-cloak x-show="open" x-collapse class="  w-full space-y-2 py-2">
 
-
                     <li>
 
                         <div class="flex items-center gap-3 justify-between">
@@ -171,7 +153,6 @@
 
                     </li>
 
-
                     <li>
 
                         <div class="flex items-center gap-3 justify-between">
@@ -193,24 +174,15 @@
                             You can change this later by going to the ··· menu at the top of your post.
                         </p>
 
-
                     </li>
-
-
 
                 </ul>
 
-
             </section>
-
 
         </aside>
 
-
-
     </main>
-
-
 
 
 </div>
