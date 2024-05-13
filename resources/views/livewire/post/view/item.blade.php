@@ -14,7 +14,7 @@
                             @break
                             
                         @case('image')
-                            <img class="h-full w-full block object-scale-down " src="{{ $file->url }}" alt="image">
+                            <img class="h-full w-full block object-scale-down" src="{{ $file->url }}" alt="image">
                             @break
                     @default
 
@@ -140,15 +140,22 @@
 
             {{-- Leave comment --}}
 
-            <form class="grid grid-cols-12 items-center w-full py-2" x-data="{ inputText: '' }">
+            <form 
+             wire:key="{{time()}}"
+             x-data="{ 
+                body: @entangle('body'),
+                parent_id: @entangle('parent_id')
+             }"
+             @submit.prevent="$wire.addComment()" 
+             class="grid grid-cols-12 items-center w-full py-2  " >
                 @csrf
-                <input placeholder="Leave a comment" type="text"
+                <input  placeholder="Leave a comment" type="text"
                     class="border-0 col-span-10 l py-2  placeholder:text-sm text-sm outline-none w-full focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0"
-                    x-model="inputText">
+                    x-model="body">
 
                 <div class="col-span-1 ml-auto flex justify-end text-right  ">
-                    <button x-cloak class="text-sm font-semibold flex justify-end text-blue-500"
-                        x-show="inputText.length > 0">Post</button>
+                    <button type="submit" x-cloak class="text-sm font-semibold flex justify-end text-blue-500 gap-2"
+                        x-show="body.length > 0">Post</button>
 
                 </div>
 
