@@ -30,7 +30,7 @@
 
             <span> {{ $comment->created_at->diffForHumans() }} </span>
             <span class="font-bold"> 345 Likes</span>
-            <span class="font-semibold"> Reply</span>
+            <button wire:click="setParent({{ $comment->id }})" class="font-semibold"> Reply</button>
 
         </div>
     </div>

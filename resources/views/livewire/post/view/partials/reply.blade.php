@@ -29,9 +29,9 @@
         {{-- Footer --}}
         <div class="col-span-7 flex gap-2 text-xs text-gray-700">
 
-            <span> {{$reply->created_at->diffForHumans()}} </span>
+            <span> {{ $reply->created_at->diffForHumans() }} </span>
             <span class="font-bold"> 345 Likes</span>
-            <span class="font-semibold"> Reply</span>
+            <button wire:click="setParent({{ $reply->id }})" class="font-semibold"> Reply</button>
 
         </div>
     </div>

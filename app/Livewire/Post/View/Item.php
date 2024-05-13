@@ -32,6 +32,13 @@ class Item extends Component
     
     }//End Method
 
+    public function setParent(Comment $comment)
+    {
+        $this->parent_id = $comment->id;
+        $this->body = "@" . $comment->user->name;
+
+    }//Ebd Method
+
     public function render()
     {
         $comments = $this->post->comments()->whereDoesntHave('parent')->get();
