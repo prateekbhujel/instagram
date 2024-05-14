@@ -36,7 +36,7 @@
 
             <div class="grid grid-cols-7 w-full gap-2">
                 <div class="col-span-5">
-                    <h5 class="font-semibold truncate text-sm">{{ $post->user->name }} </h5>
+                    <h5 class="font-semibold truncate text-sm">{{ $post->user->username }} </h5>
                 </div>
 
                 <div class="col-span-2 flex text-right justify-end">
@@ -145,7 +145,7 @@
 
             {{-- name & comment --}}
             <div class=" flex text-sm gap-2 font-medium ">
-                <p> <strong class="font-bold">{{$post->user->name}}</strong>
+                <p> <strong class="font-bold">{{$post->user->username}}</strong>
                     {{ $post->description }}
                 </p>
             </div>

@@ -7,7 +7,7 @@
         <div class="col-span-6   flex flex-wrap text-sm ">
             <p>
 
-            <span class="font-bold text-sm">{{ $comment->user->name }} </span>
+            <span class="font-bold text-sm">{{ $comment->user->username }} </span>
             {{ $comment->body }} 
             </p>
 

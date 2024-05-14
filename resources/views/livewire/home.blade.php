@@ -77,7 +77,7 @@ class="w-full h-full">
                                 <x-avatar wire:ignore story src="https://source.unsplash.com/500x500?face-{{ $i }}"
                                     class="h-14 w-14" />
                             @endif
-                            <p class="text-xs font-medium truncate">{{ fake()->name }}</p>
+                            <p class="text-xs font-medium truncate">{{ fake()->username }}</p>
                         </li>
                     @endfor
 
@@ -116,7 +116,7 @@ class="w-full h-full">
             <div class="flex items-center gap-2">
 
                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face" class="w-12 h-12" />
-                <h4 class="font-medium">{{ fake()->name }}</h4>
+                <h4 class="font-medium">{{ fake()->username }}</h4>
 
             </div>
 
@@ -132,8 +132,8 @@ class="w-full h-full">
 
                             <div class="grid grid-cols-7 w-full gap-2">
                                 <div class="col-span-5">
-                                    <h5 class="font-semibold truncate text-sm">{{ $user->name }}</h5>
-                                    <p class="text-xs truncate" wire:ignore> Followed by {{ fake()->name }}</p>
+                                    <h5 class="font-semibold truncate text-sm">{{ $user->username }}</h5>
+                                    <p class="text-xs truncate" wire:ignore> Followed by {{ fake()->username }}</p>
                                 </div>
 
                                 <div class="col-span-2 flex text-right justify-end ml-2">

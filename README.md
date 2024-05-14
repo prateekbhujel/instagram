@@ -75,6 +75,7 @@ This project is an Instagram clone built with the TALL stack (Tailwind CSS, Alpi
 
    ```bash
    php artisan serve
+   npm run dev
    ```
 
 7. Access the application in your web browser at `http://localhost:8000`.

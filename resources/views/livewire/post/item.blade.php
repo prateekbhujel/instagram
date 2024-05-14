@@ -12,7 +12,7 @@
         <div class="grid grid-cols-7 w-full gap-2">
 
             <div class="col-span-5">
-                <h5 class="font-semibold truncate text-sm"> {{ $post->user->name }} </h5>
+                <h5 class="font-semibold truncate text-sm"> {{ $post->user->username }} </h5>
             </div>
 
             <div class="col-span-2 flex text-right justify-end">
@@ -198,7 +198,7 @@
 
         {{-- name and comment --}}
         <div class="flex text-sm gap-2 font-medium">
-            <p> <strong class="font-bold"> {{ $post->user->name }} </strong>
+            <p> <strong class="font-bold"> {{ $post->user->username }} </strong>
                 {{ $post->description }} 
             </p>
         </div>
@@ -217,7 +217,7 @@
                 <ul class="my-2">
                         @foreach ($post->comments()->where('user_id', auth()->id())->get() as $comment)
                             <li class="grid grid-cols-12 text-sm items-center">
-                                <span class="font-bold col-span-3 mb-auto">{{ auth()->user()->name }}</span>
+                                <span class="font-bold col-span-3 mb-auto">{{ auth()->user()->username }}</span>
                                 <span class="col-span-8">{{ $comment->body }}</span>
                                 
                                 {{-- heart --}}
