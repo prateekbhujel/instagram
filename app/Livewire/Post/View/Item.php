@@ -14,7 +14,7 @@ class Item extends Component
     public $parent_id = null;
 
 
-   function addComment()  {
+   public function addComment()  {
 
         $this->validate(['body'=>'required']);
 
