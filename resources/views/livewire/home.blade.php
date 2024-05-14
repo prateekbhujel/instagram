@@ -117,7 +117,6 @@ class="w-full h-full">
 
                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face" class="w-12 h-12" />
                 <h4 class="font-medium">{{ fake()->username }}</h4>
-
             </div>
 
             {{-- Suggestions section Start --}}
@@ -128,11 +127,14 @@ class="w-full h-full">
                 <ul class="my-2 space-y-3">
                     @foreach ($suggestedUsers as $key => $user)
                         <li class="flex items-center gap-3">
-                            <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ $key }}" class="w-12 h-12" />
+                            <a href="{{ route('profile.home', $user->username) }}">
+                                <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ $key }}" class="w-12 h-12" />
+                            </a>
+                            
 
                             <div class="grid grid-cols-7 w-full gap-2">
                                 <div class="col-span-5">
-                                    <h5 class="font-semibold truncate text-sm">{{ $user->username }}</h5>
+                                    <a href="{{ route('profile.home', $user->username) }}" class="font-semibold truncate text-sm">{{ $user->username }}</a> 
                                     <p class="text-xs truncate" wire:ignore> Followed by {{ fake()->username }}</p>
                                 </div>
 
