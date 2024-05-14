@@ -158,7 +158,7 @@
                         <div class="flex items-center gap-3 justify-between">
 
                             <span>
-                                Turn off commenting
+                                Allow Commenting
                             </span>
                             {{-- from flowbite big toggle --}}
                             <label class="relative inline-flex items-center  cursor-pointer">

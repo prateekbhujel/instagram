@@ -90,6 +90,8 @@
 
             {{-- actions --}}
             <div class="flex gap-4 items-center my-2">
+
+                {{-- Heart --}}
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.9"
                         stroke="currentColor" class="w-6 h-6">
@@ -98,14 +100,18 @@
                     </svg>
                 </span>
 
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
-                    </svg>
-                </span>
+                {{-- Comment --}}
+                @if($post->allow_commenting)
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
+                        </svg>
+                    </span>
+                @endif
 
+                {{-- Forward --}}
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-send w-5 h-5" viewBox="0 0 16 16">
@@ -114,6 +120,7 @@
                     </svg>
                 </span>
 
+                {{-- Bookmark --}}
                 <span class="ml-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -129,45 +136,47 @@
             {{-- name & comment --}}
             <div class=" flex text-sm gap-2 font-medium ">
                 <p> <strong class="font-bold">{{$post->user->name}}</strong>
-                    {{$post->description}}
+                    {{ $post->description }}
                 </p>
             </div>
 
-            {{-- View Post Modal--}}
-            <button
-                onclick="Livewire.dispatch('openModal',{ component: 'post.view.modal', arguments:{'post':{{$post->id}}}})"
-                class="text-slate-500/90 text-sm font-medium">{{ $post->comments->count() }} comments</button>
+            @if($post->allow_commenting)
+                {{-- View Post Modal--}}
+                <button
+                    onclick="Livewire.dispatch('openModal',{ component: 'post.view.modal', arguments:{'post':{{$post->id}}}})"
+                    class="text-slate-500/90 text-sm font-medium">Total {{ $post->comments->count() }} comments</button>
 
-            {{-- Leave comment --}}
+                {{-- Leave comment --}}
 
-            <form 
-             wire:key="{{time()}}"
-             x-data="{ 
-                body: @entangle('body'),
-                parent_id: @entangle('parent_id')
-             }"
-             @submit.prevent="$wire.addComment()" 
-             class="grid grid-cols-12 items-center w-full py-2  " >
-                @csrf
-                <input  placeholder="Leave a comment" type="text"
-                    class="border-0 col-span-10 l py-2  placeholder:text-sm text-sm outline-none w-full focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0"
-                    x-model="body">
+                <form 
+                wire:key="{{time()}}"
+                x-data="{ 
+                    body: @entangle('body'),
+                    parent_id: @entangle('parent_id')
+                }"
+                @submit.prevent="$wire.addComment()" 
+                class="grid grid-cols-12 items-center w-full py-2  " >
+                    @csrf
+                    <input  placeholder="Leave a comment" type="text"
+                        class="border-0 col-span-10 l py-2  placeholder:text-sm text-sm outline-none w-full focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0"
+                        x-model="body">
 
-                <div class="col-span-1 ml-auto flex justify-end text-right  ">
-                    <button type="submit" x-cloak class="text-sm font-semibold flex justify-end text-blue-500 gap-2"
-                        x-show="body.length > 0">Post</button>
+                    <div class="col-span-1 ml-auto flex justify-end text-right  ">
+                        <button type="submit" x-cloak class="text-sm font-semibold flex justify-end text-blue-500 gap-2"
+                            x-show="body.length > 0">Post</button>
 
-                </div>
+                    </div>
 
-                <span class="col-span-1 ml-auto  ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-                    </svg>
+                    <span class="col-span-1 ml-auto  ">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                        </svg>
 
-                </span>
-            </form>
+                    </span>
+                </form>
+            @endif
 
         </footer>
 

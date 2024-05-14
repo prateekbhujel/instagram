@@ -137,8 +137,12 @@
                 </svg>
 
             </span>
-            {{-- message --}}
-            <span>
+
+            @if($post->allow_commenting)
+            {{-- comment --}}
+            <span
+            onclick="Livewire.dispatch('openModal', {component:'post.view.modal', arguments:{'post':{{ $post->id }}}})"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -146,6 +150,7 @@
                 </svg>
 
             </span>
+            @endif
             {{-- forward --}}
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -178,57 +183,66 @@
             </p>
         </div>
 
-        {{-- view post modal --}}
-        <button onclick="Livewire.dispatch('openModal', {component:'post.view.modal', arguments:{'post':{{ $post->id }}}})" class="text-slate-500/90 text-sm font-medium"> View all {{ $post->comments->count() }} comments </button>
-
-        @auth
-            {{-- Show Comments for auth --}}
-            <ul class="my-2">
-                    @foreach ($post->comments()->where('user_id', auth()->id())->get() as $comment)
-                        <li class="grid grid-cols-12 text-sm items-center">
-                            <span class="font-bold col-span-3 mb-auto">{{ auth()->user()->name }}</span>
-                            <span class="col-span-8">{{ $comment->body }}</span>
-                            <button class="col-span-1 mb-auto flex justify-end pr-px">
-                                {{-- Heart --}}
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                                </svg>                          
-                            </button>
-                        </li>
-                    @endforeach
-                </ul>
-        @endauth
-
-        {{-- leave comment --}}
-        <form
-        wire:key='{{ time() }}'
-        @submit.prevent="$wire.addComment()"
-        x-data="{body:@entangle('body')}" 
-        class="grid grid-cols-12 items-center w-full"
-        >
-            @csrf
-
-            <input x-model="body" type="text" placeholder=" Leave a comment "
-                class="border-0 col-span-10 placeholder:text-sm outline-none focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
-            <div class="col-span-1 ml-auto flex justify-end text-right">
+        @if ($post->allow_commenting)
+            @if ($post->comments->count() > 0)    
+                {{-- view post modal --}}
                 <button
-                type="submit" 
-                x-cloak x-show="body.length > 0"
-                class="text-sm font-semibold flex justify-end text-blue-500"
-                >
-                    Post
-                </button>
-            </div>
+                onclick="Livewire.dispatch('openModal', {component:'post.view.modal', arguments:{'post':{{ $post->id }}}})" 
+                class="text-slate-500/90 text-sm font-medium"
+                > View all {{ $post->comments->count() }} comments </button>
+            @endif
 
-            <span class="col-span-1 ml-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-                </svg>
-            </span>
+            @auth
+                {{-- Show Comments for auth --}}
+                <ul class="my-2">
+                        @foreach ($post->comments()->where('user_id', auth()->id())->get() as $comment)
+                            <li class="grid grid-cols-12 text-sm items-center">
+                                <span class="font-bold col-span-3 mb-auto">{{ auth()->user()->name }}</span>
+                                <span class="col-span-8">{{ $comment->body }}</span>
+                                <button class="col-span-1 mb-auto flex justify-end pr-px">
+                                    {{-- Heart --}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                    </svg>                          
+                                </button>
+                            </li>
+                        @endforeach
+                    </ul>
+            @endauth
 
-        </form>
+            {{-- leave comment --}}
+            <form
+            wire:key='{{ time() }}'
+            @submit.prevent="$wire.addComment()"
+            x-data="{body:@entangle('body')}" 
+            class="grid grid-cols-12 items-center w-full"
+            >
+                @csrf
+
+                <input x-model="body" type="text" placeholder=" Leave a comment "
+                    class="border-0 col-span-10 placeholder:text-sm outline-none focus:outline-none px-0 rounded-lg hover:ring-0 focus:ring-0">
+                <div class="col-span-1 ml-auto flex justify-end text-right">
+                    <button
+                    type="submit" 
+                    x-cloak x-show="body.length > 0"
+                    class="text-sm font-semibold flex justify-end text-blue-500"
+                    >
+                        Post
+                    </button>
+                </div>
+
+                <span class="col-span-1 ml-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                    </svg>
+                </span>
+
+            </form>
+
+        @endif
+
 
     </footer>
 </div>
