@@ -22,6 +22,14 @@ class Item extends Component
     }//End Method
     
 
+    public function toggleCommentLike(Comment $comment)
+    {
+        abort_unless(auth()->check(), 401);
+
+        auth()->user()->toggleLike($comment);
+
+    }//End Method
+
     public function addComment()  {
 
         $this->validate(['body'=>'required']);

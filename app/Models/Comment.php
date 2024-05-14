@@ -21,25 +21,25 @@ class Comment extends Model
     {
         return $this->morphTo();
         
-    }
+    }//End Method
 
 
     public function parent(): BelongsTo
     {
         return $this->belongsTo(Self::class, 'parent_id');
 
-    }
+    }//End Method
 
 
     public function replies()
     {
         return $this->hasMany(Comment::class, 'parent_id', 'id')->with('replies');
 
-    }
+    }//End Method
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
 
-    }
+    }//End Method
 }
