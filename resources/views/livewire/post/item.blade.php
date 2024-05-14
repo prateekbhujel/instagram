@@ -181,8 +181,10 @@
 
         </div>
 
-        {{-- likes and views --}}
-        <p class="font-bold text-sm">104,474 likes</p>
+        {{-- Likes or views --}}
+        @if ($post->totalLikers > 0 && !$post->hide_like_count)
+            <p class="font-bold text-sm">{{ $post->totalLikers }} {{ $post->totalLikers ? 'likes' : 'like'}}</p>
+        @endif
 
         {{-- name and comment --}}
         <div class="flex text-sm gap-2 font-medium">
