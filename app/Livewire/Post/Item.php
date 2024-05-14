@@ -30,6 +30,14 @@ class Item extends Component
 
     }//End Method
 
+    public function toggleFavorite()
+    {
+      abort_unless(auth()->check(), 401);
+      
+      auth()->user()->toggleFavorite($this->post);
+ 
+    }//End Method
+
     public function addComment()  {
 
         $this->validate(['body'=>'required']);
