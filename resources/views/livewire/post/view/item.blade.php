@@ -1,16 +1,16 @@
-<div class="grid lg:grid-cols-12 gap-3 h-full w-full overflow-hidden  ">
+<div class="grid lg:grid-cols-12 gap-3 h-full w-full overflow-hidden">
 
     <aside class="lg:col-span-7 m-auto items-center w-full overflow-scroll">
 
         {{-- CSS Snap scroll --}}
         <div
-            class="relative flex overflow-x-scroll overscroll-x-contain w-[500px] h-96 snap-x snap-mandatory gap-2 px-2 ">
+            class="relative flex overflow-x-scroll overscroll-x-contain lg:h-full xs:w-[500px] h-98 snap-x snap-mandatory gap-2 px-2">
 
             @foreach ($post->media as $key=> $file)
                 <div class=" w-full h-full shrink-0 snap-always snap-center">
                     @switch($file->mime)
                         @case('video')
-                            <x-video source="{{ $file->url }}" />
+                            <x-video source="{{ $file->url }}" class="h-full w-full block object-scale-down" />
                             @break
                             
                         @case('image')
@@ -30,7 +30,7 @@
     <aside
         class="lg:col-span-5 h-full scrollbar-hide relative flex gap-4 flex-col overflow-hidden overflow-y-scroll  ">
 
-        <header class="flex items-center gap-3 border-b py-2 sticky top-0 bg-white z-10">
+        <header class="flex items-center gap-3 border-b py-2 sticky top-0 bg-white z-8">
 
             <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ rand(0,10) }}" class="w-9 h-9" />
 
