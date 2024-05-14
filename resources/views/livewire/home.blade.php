@@ -25,7 +25,7 @@ class="w-full h-full">
   
             <div class="col-span-3">
   
-              <img src="{{asset('assets/logo.png')}}"  class="h-12 max-w-lg w-full" alt="logo">
+              <img src="{{ asset('assets/logo.png') }}"  class="h-12 max-w-lg w-full" alt="logo">
   
             </div>
   
@@ -71,10 +71,10 @@ class="w-full h-full">
                         <li class="flex-col justify-center w-20 gap-1 p-2">
                             
                             @if($i % 2 == 0)
-                                <x-avatar src="https://source.unsplash.com/500x500?face-{{ $i }}"
+                                <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ $i }}"
                                     class="h-14 w-14" /> 
                             @else
-                                <x-avatar story src="https://source.unsplash.com/500x500?face-{{ $i }}"
+                                <x-avatar wire:ignore story src="https://source.unsplash.com/500x500?face-{{ $i }}"
                                     class="h-14 w-14" />
                             @endif
                             <p class="text-xs font-medium truncate">{{ fake()->name }}</p>
@@ -115,7 +115,7 @@ class="w-full h-full">
 
             <div class="flex items-center gap-2">
 
-                <x-avatar src="https://source.unsplash.com/500x500?face" class="w-12 h-12" />
+                <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face" class="w-12 h-12" />
                 <h4 class="font-medium">{{ fake()->name }}</h4>
 
             </div>
@@ -126,26 +126,33 @@ class="w-full h-full">
                 <h4 class="fomt-bold text-gray-700/95">Suggestions for you </h4>
                 
                 <ul class="my-2 space-y-3">
-                    @for($i = 0; $i < 5; $i++)
+                    @foreach ($suggestedUsers as $key => $user)
                         <li class="flex items-center gap-3">
-                            <x-avatar src="https://source.unsplash.com/500x500?face-{{ $i }}" class="w-12 h-12" />
+                            <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ $key }}" class="w-12 h-12" />
 
                             <div class="grid grid-cols-7 w-full gap-2">
                                 <div class="col-span-5">
-                                    <h5 class="font-semibold truncate text-sm">{{ fake()->name }}</h5>
-                                    <p class="text-xs truncate"> Followed by {{ fake()->name }}</p>
+                                    <h5 class="font-semibold truncate text-sm">{{ $user->name }}</h5>
+                                    <p class="text-xs truncate" wire:ignore> Followed by {{ fake()->name }}</p>
                                 </div>
 
                                 <div class="col-span-2 flex text-right justify-end ml-2">
-
-                                    <button class="font-bold text-blue-500/100 ml-auto text-xs hover:text-slate-700">Follow</button>
-
+                                    @if (auth()->user()->isFollowing($user))
+                                        <button wire:click="toggleFollow({{ $user->id }})" 
+                                            class="font-bold text-blue-900 ml-auto text-xs hover:text-blue-900/40">
+                                            Following
+                                        </button>    
+                                    @else
+                                        <button wire:click="toggleFollow({{ $user->id }})" 
+                                            class="font-bold text-blue-500/100 ml-auto text-xs hover:text-slate-700">
+                                            Follow
+                                        </button>
+                                    @endif
                                 </div>
-
                             </div>
                             
                         </li>
-                    @endfor
+                    @endforeach
                 </ul>
 
             </section>
