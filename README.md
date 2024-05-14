@@ -16,6 +16,7 @@ This project is an Instagram clone built with the TALL stack (Tailwind CSS, Alpi
 ## Technologies Used
 
 - **Laravel**: Laravel is used as the backend framework to handle routing, authentication, and database operations.
+   [OverTrue Laravel Package Used for: Follow/Unfollow, Likes, Bookmars.]
 - **Tailwind CSS**: Tailwind CSS is used for styling the frontend components, providing a modern and responsive design.
 - **Alpine.js**: Alpine.js is used for frontend interactivity and dynamic behavior without the need for a full-fledged JavaScript framework.
 - **Livewire**: Livewire is used to build reactive interfaces on the server-side, simplifying the development of interactive features.
