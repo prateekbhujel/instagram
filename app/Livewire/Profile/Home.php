@@ -3,12 +3,20 @@
 namespace App\Livewire\Profile;
 
 use App\Models\User;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Home extends Component
 {
     public $user;
 
+
+    #[On('closeModal')]
+    public function revertUrl()
+    {
+        $this->js("history.replaceState({}, '', '/')");
+        
+    }//End Method
 
 
     public function toggleFollow()
@@ -18,6 +26,7 @@ class Home extends Component
         auth()->user()->toggleFollow($this->user);
 
     }//End Method
+
 
     public function mount($user)
     {
@@ -29,8 +38,9 @@ class Home extends Component
     public function render()
     {
         $this->user = User::whereUsername($this->user->username)->withCount('followers', 'followings', 'posts')->firstOrFail();
+        $posts = $this->user->posts()->where('type', 'post')->get();
 
-        return view('livewire.profile.home');
+        return view('livewire.profile.home', compact('posts'));
         
     }//End Method
 }

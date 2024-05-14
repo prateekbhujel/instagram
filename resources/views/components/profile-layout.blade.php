@@ -135,12 +135,6 @@
                 
             </h4>
 
-            <p class="mb-4">
-                I'm the architect of your digital dreams, the magician who turns lines of code into captivating experiences.<br>
-                            PHP | Laravel
-                <br> <a class="text-blue-600 hover:text-ellipsis cursor-pointer" href="https://pratikbhujel.com.np" target="_blank"> My website</a>
-            </p>
-
 
         </aside>
 
