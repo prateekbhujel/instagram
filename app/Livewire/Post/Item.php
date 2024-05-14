@@ -8,12 +8,21 @@ use Livewire\Component;
 
 class Item extends Component
 {
-    public $post;
+    public Post $post;
 
     public $body;
     
 
-    function addComment()  {
+    public function togglePostLike()
+    {
+        abort_unless(auth()->check(), 401);
+
+        auth()->user()->toggleLike($this->post);
+
+    }//End Method
+    
+
+    public function addComment()  {
 
         $this->validate(['body'=>'required']);
 
@@ -32,5 +41,6 @@ class Item extends Component
     public function render()
     {
         return view('livewire.post.item');
-    }
+
+    }//End Method
 }

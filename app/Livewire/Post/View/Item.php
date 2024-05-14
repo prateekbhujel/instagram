@@ -13,9 +13,17 @@ class Item extends Component
     public $body;
     public $parent_id = null;
 
+    
+    public function togglePostLike()
+    {
+        abort_unless(auth()->check(), 401);
 
-   public function addComment()  {
+        auth()->user()->toggleLike($this->post);
 
+    }//End Method
+
+   public function addComment()  
+   {
         $this->validate(['body'=>'required']);
 
         //create comment 
@@ -29,7 +37,6 @@ class Item extends Component
         ]);
 
         $this->reset( ['body']);
-    
     }//End Method
 
     public function setParent(Comment $comment)
@@ -46,4 +53,7 @@ class Item extends Component
         return view('livewire.post.view.item', compact('comments'));
 
     }//End Method
+
+
+
 }
