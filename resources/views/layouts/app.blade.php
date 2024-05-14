@@ -23,11 +23,11 @@
 
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex-col items-center justify-center">
+            <div class="drawer-content items-center justify-center">
               <!-- Page content here -->
                 {{ $slot }}
             </div> 
-            <div class="drawer-side">
+            <div class="drawer-side overflow-visible z-10">
               <label for="my-drawer-2" class="drawer-overlay"></label> 
             
               @include('layouts.sidebar')

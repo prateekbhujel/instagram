@@ -16,7 +16,7 @@
         </svg>
      </div>
 
-      <img  x-cloak x-show="!(shrink ||drawer)" src="{{asset('assets/logo.png')}}" class="h-16 w-44 text-black" alt="logo">
+      <img  x-cloak x-show="!(shrink ||drawer)" src="{{ asset('assets/logo.png') }}" class="h-16 w-44 text-black" alt="logo">
     </div>
 
     {{-- Side content --}}
@@ -159,17 +159,16 @@
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)"  class="text-lg font-medium">Create</h4>
-            </div></li>
-
-
-
-        <li><a class="flex items-center gap-5">
-
-
-                <x-avatar class=" w-7 h-7 shrink-0" />
-
-                <h4 x-cloak x-show="!(shrink||drawer)"  class=" text-lg font-medium">Profile</h4>
-            </a></li>
+            </div></li>            
+            
+        @auth
+            <li>
+                <a href = "{{ route('profile.home', auth()->user()->username) }}" class="flex items-center gap-5">
+                    <x-avatar src="https://source.unsplash.com/400x400?face" class="w-7 h-7 shrink-0" />
+                    <h4 x-cloak x-show="!(shrink||drawer)"  class=" text-lg font-medium">Profile</h4>
+                </a>
+            </li>
+        @endauth 
 
     </ul>
 
