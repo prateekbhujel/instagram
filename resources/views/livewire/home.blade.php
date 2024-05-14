@@ -164,24 +164,21 @@ class="w-full h-full">
             <section class="mt-5">
 
                 <ol class="flex gap-2 flex-wrap">
-
-                    <li class="text-xs text-gray-800/95 font-medium"><a href="#" class="hover:underline">About</a></li>
-                    <li class="text-xs text-gray-800/95 font-medium"><a href="#" class="hover:underline">Help</a></li>
-                    <li class="text-xs text-gray-800/95 font-medium"><a href="#" class="hover:underline">API</a></li>
-                    <li class="text-xs text-gray-800/95 font-medium"><a href="#" class="hover:underline">Job</a></li>
-                    <li class="text-xs text-gray-800/95 font-medium"><a href="#" class="hover:underline">Privacy</a></li>
-                    <li class="text-xs text-gray-800/95 font-medium"><a href="#" class="hover:underline">Location</a></li>
+                    <li class="text-xs text-gray-800/95 font-medium"><a href="https://about.instagram.com/" target="_blank" class="hover:underline">About</a></li>
+                    <li class="text-xs text-gray-800/95 font-medium"><a href="https://help.instagram.com/" target="_blank" class="hover:underline">Help</a></li>
+                    <li class="text-xs text-gray-800/95 font-medium"><a href="https://developers.facebook.com/docs/instagram" target="_blank" class="hover:underline">API</a></li>
+                    <li class="text-xs text-gray-800/95 font-medium"><a href="https://about.instagram.com/about-us/careers" target="_blank" class="hover:underline">Job</a></li>
+                    <li class="text-xs text-gray-800/95 font-medium"><a href="https://privacycenter.instagram.com/policy/?entry_point=ig_help_center_data_policy_redirect" target="_blank" class="hover:underline">Privacy</a></li>
+                    <li class="text-xs text-gray-800/95 font-medium"><a href="https://www.instagram.com/explore/locations/" target="_blank" class="hover:underline">Location</a></li>
 
                 </ol>
-                <h3 class="text-gray-800/92 mt-6 text-sm">© 2024 INSTAGRAM FROM YOU BY <a href="https://instagram.com/prateekbhujel" class="hover:text-blue-500" target="_blank">PRATIK BHUJEL</a></h3>
-
+                <h3 class="text-gray-800/92 mt-6 text-sm">© 2024 INSTAGRAM For YOU BY <a href="https://instagram.com/prateekbhujel" class="hover:text-blue-500" target="_blank">PRATIK BHUJEL</a></h3>
             </section>
             {{-- Applinks Section End --}}
 
         </aside>
         {{-- Suggestion and applinks Section End --}}
-
-
+        
     </main>
     {{-- Main Section End --}}
 

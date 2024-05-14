@@ -21,18 +21,14 @@ class Home extends Component
 
     public function mount($user)
     {
-        $this->user = User::whereUsername($user)
-                            ->withCount('followers', 'followings', 'posts')
-                            ->firstOrFail();
+        $this->user = User::whereUsername($user)->withCount('followers', 'followings', 'posts')->firstOrFail();
 
     }//End Method
 
 
     public function render()
     {
-        $this->user = User::whereUsername($this->user->username)
-        ->withCount('followers', 'followings', 'posts')
-        ->firstOrFail();
+        $this->user = User::whereUsername($this->user->username)->withCount('followers', 'followings', 'posts')->firstOrFail();
 
         return view('livewire.profile.home');
         

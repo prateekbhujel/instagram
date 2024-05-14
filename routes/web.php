@@ -23,10 +23,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    //Home
+    //Home Component
      Route::get('/',Home::class)->name('home');
 
-    //Profile
+    //Profile Component
     Route::get('/profile/{user}',ProfileHome::class)->name('profile.home');
 
 

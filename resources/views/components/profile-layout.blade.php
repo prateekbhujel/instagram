@@ -123,18 +123,23 @@
 
             {{-- following details --}}
             <div class="grid grid-cols-3 w-full gap-2">
-                <span class="font-bold" wire:key='{{time()}}'>{{$user->posts_count}} Posts</span>
-                <span class="font-bold">{{$user->followers_count}} Followers</span>
-                <span class="font-bold">{{$user->followings_count}} following</span>
+                <span class="font-bold" wire:key='{{ time() }}'>{{$user->posts_count}} Posts</span>
+                <span class="font-bold">{{ $user->followers_count }} Followers</span>
+                <span class="font-bold">{{ $user->followings_count }} following</span>
             </div>
 
             {{-- profile user's name --}}
 
-            <h4>
-                {{$user->name}}
+            <h4 class="font-semibold text-md">
+                {{ $user->name }}
+                
             </h4>
 
-
+            <p class="mb-4">
+                I'm the architect of your digital dreams, the magician who turns lines of code into captivating experiences.<br>
+                            PHP | Laravel
+                <br> <a class="text-blue-600 hover:text-ellipsis cursor-pointer" href="https://pratikbhujel.com.np" target="_blank"> My website</a>
+            </p>
 
 
         </aside>
@@ -203,7 +208,7 @@
 
 
     <main class="my-7">
-        {{$slot}}
+        {{ $slot }}
     </main>
 
 </div>
