@@ -1,5 +1,6 @@
-<div class="lg:px-8 my-5 overflow-hidden">
-    <ul class=" h-[calc(100vh_-_1rem)] flex flex-col gap-y-7  snap-y snap-mandatory overflow-x-hidden">
+<div class="lg:px-8 flex flex-col my-auto overflow-hidden">
+
+    <ul class=" h-[calc(100vh_-_1rem)] my-auto flex flex-col gap-y-7 snap-y snap-mandatory overflow-x-hidden">
 
         @foreach ($posts as $post)
             
