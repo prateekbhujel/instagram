@@ -4,7 +4,7 @@
 
         {{-- CSS Snap scroll --}}
         <div
-            class="relative flex overflow-x-scroll overscroll-x-contain lg:h-full xs:w-[500px] h-98 snap-x snap-mandatory gap-2 px-2">
+            class="relative flex overflow-x-scroll overscroll-x-contain w-[400px] h-[98%] snap-x snap-mandatory m-auto gap-2 px-2">
 
             @foreach ($post->media as $key=> $file)
                 <div class=" w-full h-full shrink-0 snap-always snap-center">

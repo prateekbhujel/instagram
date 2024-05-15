@@ -50,7 +50,7 @@ class Item extends Component
     public function setParent(Comment $comment)
     {
         $this->parent_id = $comment->id;
-        $this->body = "@" . $comment->user->username;
+        $this->body = "@" . $comment->user->username . ",";
 
     }//Ebd Method
 
