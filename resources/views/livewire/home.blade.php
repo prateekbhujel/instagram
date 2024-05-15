@@ -25,7 +25,7 @@ class="w-full h-full">
   
             <div class="col-span-3">
   
-              <img src="{{ asset('assets/logo.png') }}"  class="h-12 max-w-lg w-full" alt="logo">
+              <img src="{{ asset('assets/logo.png') }}" class="h-10 max-w-lg w-full" alt="logo">
   
             </div>
   
@@ -65,7 +65,7 @@ class="w-full h-full">
             {{-- Story section Start --}}
             <section>
 
-                <ul class="flex overflow-x-auto scrollbar-hide items-center gap-2">
+                <ul class="flex overflow-x-auto scrollbar-hide items-center gap-3">
 
                     @for ($i = 0; $i < 10; $i++)
                         <li class="flex-col justify-center w-20 gap-1 p-2">
