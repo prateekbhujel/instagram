@@ -207,7 +207,7 @@
             @if ($post->comments->count() > 0)    
                 {{-- view post modal --}}
                 <button
-                onclick="Livewire.dispatch('openModal', {component:'post.view.modal', arguments:{'post':{{ $post->id }}}})" 
+                onclick="Livewire.dispatch('openModal', {component:'post.view.modal', arguments:{'post':{{ $post->id }}}})"
                 class="text-slate-500/90 text-sm font-medium"
                 > View all {{ $post->comments->count() }} comments </button>
             @endif
