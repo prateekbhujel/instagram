@@ -60,14 +60,14 @@ class="w-full h-full">
     {{-- Main Section Start --}}
     <main class="grid lg:grid-cols-12 gap-8 md:mt-10">
         
-        <aside class="lg:col-span-8 overflow-hidden w-full flex flex-col items-center">
+        <aside class="lg:col-span-8 overflow-hidden">
              
             {{-- Story section Start --}}
-            <section class="w-full max-w-6xl flex justify-center">
+            <section>
 
-                <ul class="flex overflow-x-auto scrollbar-hide items-center gap-4 w-full max-w-3xl mx-auto">
+                <ul class="flex overflow-x-auto scrollbar-hide items-center justify-center gap-2">
 
-                    @for ($i = 0; $i < 10; $i++) <!-- Adjusted to loop 20 items for example -->
+                    @for ($i = 0; $i < 8; $i++) <!-- Adjusted to loop 20 items for example -->
                         <li class="flex flex-col justify-center w-20 gap-1 p-2">
                             
                             @if($i % 2 == 0)
@@ -125,9 +125,9 @@ class="w-full h-full">
             
 
             {{-- Suggestions section Start --}}
-            <section class="mt-6"> 
+            <section class="mt-4"> 
 
-                <h4 class="fomt-bold text-gray-800 my-2">Suggested for you </h4>
+                <h4 class="font-bold text-gray-700/95 my-2">Suggested for you </h4>
                 
                 <ul class="my-2 space-y-3">
                     @foreach ($suggestedUsers as $key => $user)
