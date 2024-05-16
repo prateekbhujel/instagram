@@ -111,13 +111,13 @@ class="w-full h-full">
         
 
         {{-- Suggestion and applinks Section Start --}}
-        <aside class="lg:col-span-4 hidden lg:block mt-2 mr-[4.56rem]">
+        <aside class="lg:col-span-4 hidden lg:block mt-3 mr-[2.5rem]">
 
             <div class="flex items-center gap-2">
 
                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face" class="w-12 h-12" />
                 <h4 class="font-semibold">
-                   {{ '@'. auth()->user()->username }}<br>
+                   {{ auth()->user()->username }}<br>
                     <span class="text-sm font-normal truncate text-gray-500 mt-4">{{ auth()->user()->name }}</span>
                 </h4>
                 
@@ -125,9 +125,9 @@ class="w-full h-full">
             
 
             {{-- Suggestions section Start --}}
-            <section class="mt-4"> 
+            <section class="mt-6"> 
 
-                <h4 class="fomt-bold text-gray-700/95">Suggestions for you </h4>
+                <h4 class="fomt-bold text-gray-800 my-2">Suggested for you </h4>
                 
                 <ul class="my-2 space-y-3">
                     @foreach ($suggestedUsers as $key => $user)
