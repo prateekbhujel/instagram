@@ -3,7 +3,7 @@ x-data = "{
     canLoadMore:@entangle('canLoadMore')
 }"
 
-@scroll.window.trottle = "
+@scroll.window.throttle = "
     scrollTop = window.scrollY || window.scrollTop;
     divHeight = window.innerHeight || document.documentElement.clientHeight;
     scrollHeight = document.documentElement.scrollHeight;
@@ -19,7 +19,7 @@ x-data = "{
 class="w-full h-full">
 
     {{-- Header Section Start --}}
-    <header class="md:hidden sticky top-0 bg-white">
+    <header class="md:hidden sticky top-0 bg-white z-50">
 
         <div class="grid grid-cols-12 gap-2 items-center">
   
@@ -37,7 +37,7 @@ class="w-full h-full">
                 
               </div>
   
-            <div class="col-span-1 flex justify-center">
+            <div class="col-span-1 justify-center">
   
               <a href="#">
                 <span>
@@ -60,15 +60,15 @@ class="w-full h-full">
     {{-- Main Section Start --}}
     <main class="grid lg:grid-cols-12 gap-8 md:mt-10">
         
-        <aside class="lg:col-span-8 overflow-hidden">
+        <aside class="lg:col-span-8 overflow-hidden w-full flex flex-col items-center">
              
             {{-- Story section Start --}}
-            <section>
+            <section class="w-full max-w-6xl flex justify-center">
 
-                <ul class="flex overflow-x-auto scrollbar-hide items-center gap-3">
+                <ul class="flex overflow-x-auto scrollbar-hide items-center gap-4 w-full max-w-3xl mx-auto">
 
-                    @for ($i = 0; $i < 10; $i++)
-                        <li class="flex-col justify-center w-20 gap-1 p-2">
+                    @for ($i = 0; $i < 10; $i++) <!-- Adjusted to loop 20 items for example -->
+                        <li class="flex flex-col justify-center w-20 gap-1 p-2">
                             
                             @if($i % 2 == 0)
                                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ $i }}"
@@ -77,7 +77,7 @@ class="w-full h-full">
                                 <x-avatar wire:ignore story src="https://source.unsplash.com/500x500?face-{{ $i }}"
                                     class="h-14 w-14" />
                             @endif
-                            <p class="text-xs font-medium truncate">{{ fake()->username }}</p>
+                            <p class="text-xs font-medium truncate text-center">{{ fake()->username }}</p>
                         </li>
                     @endfor
 
@@ -111,13 +111,18 @@ class="w-full h-full">
         
 
         {{-- Suggestion and applinks Section Start --}}
-        <aside class="lg:col-span-4 hidden lg:block p-4">
+        <aside class="lg:col-span-4 hidden lg:block mt-2 mr-[4.56rem]">
 
             <div class="flex items-center gap-2">
 
                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face" class="w-12 h-12" />
-                <h4 class="font-medium">{{ fake()->username }}</h4>
+                <h4 class="font-semibold">
+                   {{ '@'. auth()->user()->username }}<br>
+                    <span class="text-sm font-normal truncate text-gray-500 mt-4">{{ auth()->user()->name }}</span>
+                </h4>
+                
             </div>
+            
 
             {{-- Suggestions section Start --}}
             <section class="mt-4"> 
@@ -129,13 +134,14 @@ class="w-full h-full">
                         <li class="flex items-center gap-3">
                             <a href="{{ route('profile.home', $user->username) }}">
                                 <x-avatar wire:ignore src="https://source.unsplash.com/500x500?face-{{ $key }}" class="w-12 h-12" />
+                                
                             </a>
                             
 
                             <div class="grid grid-cols-7 w-full gap-2">
                                 <div class="col-span-5">
                                     <a href="{{ route('profile.home', $user->username) }}" class="font-semibold truncate text-sm">{{ $user->username }}</a> 
-                                    <p class="text-xs truncate" wire:ignore> Followed by {{ fake()->username }}</p>
+                                    <p class="text-xs truncate" wire:ignore> Followed by <a href="{{ route('profile.home', fake()->username) }}" wire:ignore>{{ fake()->username }}</a></p>
                                 </div>
 
                                 <div class="col-span-2 flex text-right justify-end ml-2">

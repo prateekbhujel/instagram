@@ -1,13 +1,15 @@
-<div  
-    x-data="{
-        shrink:@entangle('shrink'),
-        drawer:@entangle('drawer'),
-        showSearch:false,
-        showNotification:false,
-
-    }"
-    class="menu p-3 w-20 h-full grid bg-white border-r text-base-content"
-    :class="{'w-72 ':!shrink}">
+<div x-data="{
+    shrink: @entangle('shrink'),
+    drawer: @entangle('drawer'),
+    showSearch: false,
+    showNotifications: false,
+}" 
+class="menu p-3 w-full h-full grid bg-white border-r text-base-content" 
+:class="{
+    'w-[27.322rem] mr-3': showSearch || showNotifications,
+    'w-50': !showSearch && !showNotifications && !shrink,
+    'w-20': shrink
+}">
 
     {{--Logo--}}
     <div class="pt-3">
@@ -249,28 +251,30 @@
           </div>
     </footer>
 
-    <div x-show="drawer"
-    @click.outside="drawer=false;showSearch=false;showNotifications=false"
-    x-cloak x-transition.origin.left class="fixed inset-y-0 left-[70px] w-[16rem] px-4 overflow-y-scroll overflow-x-hidden shadow bg-white border rounded-r-2xl z-[70]">
+    <div @click.outside="drawer=false; showSearch =false;showNotifications=false" x-cloak x-show="drawer"
+    x-transition.origin.left class="fixed inset-y-0 left-[70px] relatve px-4 w-96 overflow-y-scroll 
+          overflow-x-hidden overscroll-contain bg-white shadow border rounded-r-2xl z-50">
         
+        {{-- Search --}}
         <template x-if="showSearch">
             <div x-cloak class="h-full">
-                <header class="sticky top-0 w-full bg-white py-2"> 
-                    <h5 class="text-4xl font-bold my-4">
-                        Search
-                    </h5>
-                    
-                    {{-- Input field --}}
-                    <input wire:model.live="query" type="search" placeholder="Search" class="border-0 outline-none w-full focus:outline-none bg-gray-100 rounded-lg hover:ring-0 focus:ring-0">
-                    
+
+                <header class="sticky top-0 w-full bg-white py-2">
+
+                    <h5 class="text-4xl font-bold my-4">Search</h5>
+
+                    {{-- Change type to search --}}
+                    <input type="search" wire:model.live='query' placeholder="Search "
+                        class="border-0 outline-none w-full focus:outline-none bg-gray-100 rounded-lg hover:ring-0 focus:ring-0 ">
                 </header>
 
-               {{-- search results --}}
-               <main class="my-2">
+
+                {{-- search results --}}
+                <main class="my-2">
 
                     @if ($results)
                     <ul class="space-y-2 overflow-x-hidden">
-                        @foreach ($results as $key => $user)
+                        @foreach ($results as $key=> $user)
 
                         <li>
                             <a href="{{route('profile.home',$user->username)}}"
@@ -291,9 +295,9 @@
 
                     </ul>
                     @else
-                        <center>
-                            No results
-                        </center>
+                    <center>
+                        No results
+                    </center>
                     @endif
                 </main>
 
