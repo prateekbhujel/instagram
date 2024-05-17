@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Explore;
 use App\Livewire\Home;
+use App\Livewire\Post\View\Page;
 use App\Livewire\Profile\Home as ProfileHome;
 use App\Livewire\Profile\Reels;
 use App\Livewire\Profile\Saved;
@@ -31,6 +32,9 @@ Route::middleware('auth')->group(function () {
 
     //Reels Component
     Route::get('/reels', LivewireReels::class)->name('reels');
+    
+    //Post Page Modal
+    Route::get('/post/{post}', Page::class)->name('post');
 
     //Profile Component
     Route::get('/profile/{user}',ProfileHome::class)->name('profile.home');
