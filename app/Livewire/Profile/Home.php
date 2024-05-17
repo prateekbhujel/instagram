@@ -3,6 +3,7 @@
 namespace App\Livewire\Profile;
 
 use App\Models\User;
+use App\Notifications\NewFollowerNotification;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -25,6 +26,12 @@ class Home extends Component
 
         auth()->user()->toggleFollow($this->user);
 
+        //Send notification to the user if is following
+        if(auth()->user()->isFollowing($this->user))
+            $this->user->notify(new NewFollowerNotification(auth()->user()));
+        
+         
+
     }//End Method
 
 
@@ -43,4 +50,6 @@ class Home extends Component
         return view('livewire.profile.home', compact('posts'));
         
     }//End Method
+
+
 }
