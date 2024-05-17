@@ -62,7 +62,7 @@
             "
             
             
-            class="swiper h-[500px] border bg-white">
+            class="swiper h-[500px] border bg-red-200/10 rounded-3xl">
                 <!-- Additional required wrapper -->
 
                 <ul x-cloak class="swiper-wrapper">
