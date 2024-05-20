@@ -3,7 +3,12 @@
     drawer: @entangle('drawer'),
     showSearch: false,
     showNotifications: false,
-}" 
+}"
+
+x-init ="
+$wire.shrink={{ request()->routeIs('chat') }}
+" 
+
 class="menu p-3 w-20 h-full grid bg-white border-r text-base-content" 
 :class="{
     'w-[27.322rem] mr-3': showSearch || showNotifications,
@@ -47,14 +52,6 @@ class="menu p-3 w-20 h-full grid bg-white border-r text-base-content"
                             d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
                     @endif
-
-
-
-
-
-
-
-
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)"
@@ -96,23 +93,16 @@ class="menu p-3 w-20 h-full grid bg-white border-r text-base-content"
                         <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z" />
                     </svg>
                     @endif
-
-
-
-
-
-
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)"
-                    class=" text-lg {{request()->routeIs('explore')?'font-bold':'font-medium'}} ">Explore</h4>
+                    class=" text-lg {{ request()->routeIs('explore')?'font-bold':'font-medium' }} ">Explore</h4>
             </a></li>
 
 
-        <li><a wire:navigate href="{{route('reels')}}" class="flex items-center gap-5">
-
+        <li>
+            <a wire:navigate href="{{ route('reels') }}" class="flex items-center gap-5">
                 <span>
-
                     @if (request()->routeIs('reels'))
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
                         id="instagram-reel">
@@ -133,44 +123,45 @@ class="menu p-3 w-20 h-full grid bg-white border-r text-base-content"
                             d="M7.684 1.051a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265zm6 0a1 1 0 0 1 1.265.633l2 6a1 1 0 0 1-1.897.632l-2-6a1 1 0 0 1 .632-1.265z"
                             clip-rule="evenodd"></path>
                     </svg>
-
                     @endif
-
-
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)"
                     class=" text-lg  {{request()->routeIs('reels')?'font-bold':'font-medium'}}">Reels</h4>
-            </a></li>
+            </a>
+        </li>
 
 
-        <li><a class="flex items-center gap-5">
-
+        <li>
+            <a wire:navigate href="{{ route('chat') }}" class="flex items-center gap-5">
                 <span>
-                    <svg class="w-6 h-6 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-                        id="messenger">
-                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M14.268,2.112A13,13,0,0,0,6,23.3v3.661A1.258,1.258,0,0,0,7.82,28.09l2.663-1.332a12.9,12.9,0,0,0,7.25,1.126A13,13,0,1,0,14.268,2.112Z">
-                        </path>
-                        <path
-                            d="M9.049,18.163,13.64,11.63a.64.64,0,0,1,.94-.2l3.075,2.307a.641.641,0,0,0,.714.036l3.745-2.646a.64.64,0,0,1,.9.835l-3.707,6.414a.64.64,0,0,1-.9.263L14.3,16.181a.638.638,0,0,0-.615-.024l-3.794,2.9A.641.641,0,0,1,9.049,18.163Z">
-                        </path>
-                    </svg>
-
-                    {{-- <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    @if (request()->routeIs('chat'))
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         fill="currentColor" viewBox="0 0 16 16">
                         <path
                             d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z" />
-                    </svg> --}}
-
+                        </svg>
+                    @else
+                        <svg class="w-6 h-6 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                            id="messenger">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M14.268,2.112A13,13,0,0,0,6,23.3v3.661A1.258,1.258,0,0,0,7.82,28.09l2.663-1.332a12.9,12.9,0,0,0,7.25,1.126A13,13,0,1,0,14.268,2.112Z">
+                            </path>
+                            <path
+                                d="M9.049,18.163,13.64,11.63a.64.64,0,0,1,.94-.2l3.075,2.307a.641.641,0,0,0,.714.036l3.745-2.646a.64.64,0,0,1,.9.835l-3.707,6.414a.64.64,0,0,1-.9.263L14.3,16.181a.638.638,0,0,0-.615-.024l-3.794,2.9A.641.641,0,0,1,9.049,18.163Z">
+                            </path>
+                        </svg>
+                    @endif
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Messages</h4>
-            </a></li>
+            </a>
+        </li>
 
-        <li><div
-            @click="showNotifications=true;showSearch =false;drawer=true"
+        <li>
+            <div
+            @click="showNotifications=true;showSearch=false;drawer=true"
              class="flex items-center gap-5">
 
                 <span>
@@ -191,7 +182,8 @@ class="menu p-3 w-20 h-full grid bg-white border-r text-base-content"
                 </span>
 
                 <h4 x-cloak x-show="!(shrink||drawer)" class=" text-lg font-medium">Notifications</h4>
-            </div></li>
+            </div>
+        </li>
 
         <li>
             <div onclick="Livewire.dispatch('openModal',{ component: 'post.create' })" class="flex items-center gap-5">

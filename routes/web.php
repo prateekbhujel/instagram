@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Chat\Index;
 use App\Livewire\Explore;
 use App\Livewire\Home;
 use App\Livewire\Post\View\Page;
@@ -35,6 +36,11 @@ Route::middleware('auth')->group(function () {
     
     //Post Page Modal
     Route::get('/post/{post}', Page::class)->name('post');
+
+
+    //Chat Index and Component
+    Route::get('/chat', Index::class)->name('chat');
+
 
     //Profile Component
     Route::get('/profile/{user}',ProfileHome::class)->name('profile.home');
