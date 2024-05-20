@@ -68,4 +68,12 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
 
     }//End Method
+
+
+    public function receivesBroadcastNotificationsOn(): string
+    {
+        return 'users.' .$this->id;
+        
+    }//End Method
+
 }
