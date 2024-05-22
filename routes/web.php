@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Chat\Index;
+use App\Livewire\Chat\Main;
 use App\Livewire\Explore;
 use App\Livewire\Home;
 use App\Livewire\Post\View\Page;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     //Chat Index and Component
     Route::get('/chat', Index::class)->name('chat');
+    Route::get('/chat/{chat}', Main::class)->name('chat.main');
 
 
     //Profile Component
