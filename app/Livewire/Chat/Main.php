@@ -2,11 +2,21 @@
 
 namespace App\Livewire\Chat;
 
+use App\Models\Conversation;
 use Livewire\Component;
 
 class Main extends Component
 {
 
+    public $chat;
+    public $conversation;
+    
+    
+    public function mount()
+    {
+        $this->conversation = Conversation::findOrFail($this->chat);
+        
+    }//End Method
 
     public function render()
     {
@@ -20,12 +30,13 @@ class Main extends Component
                     <main class="grid w-full dark:border-gray-700 h-full relative overflow-y-auto"  style="contain:content">
 
                         <!-- Chat Componennt -->
-                           <livewire:chat.chat />
+                           <livewire:chat.chat :conversation = "$conversation"/>
 
                     </main>
                 </div>
         HTML;
-    }
+
+    }//End Method
 
 
 
