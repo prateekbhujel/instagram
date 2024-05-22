@@ -20,7 +20,7 @@ class Main extends Component
                     <main class="grid w-full dark:border-gray-700 h-full relative overflow-y-auto"  style="contain:content">
 
                         <!-- Chat Componennt -->
-                            Messages here...
+                           <livewire:chat.chat />
 
                     </main>
                 </div>
