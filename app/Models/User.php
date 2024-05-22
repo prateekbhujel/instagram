@@ -70,6 +70,13 @@ class User extends Authenticatable
     }//End Method
 
 
+    public function conversations(): HasMany
+    {
+        return $this->hasMany(Conversation::class, 'sender_id')->orwhere('receiver_id', $this->id);
+
+    }//End Method
+
+    
     public function receivesBroadcastNotificationsOn(): string
     {
         return 'users.' .$this->id;
